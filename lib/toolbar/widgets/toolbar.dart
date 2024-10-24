@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i18n_extension/i18n_widget.dart';
+import 'package:i18n_extension/i18n_extension.dart';
 
 import '../../controller/controllers/editor-controller.dart';
 import '../../document/models/attributes/attributes-aliases.model.dart';
