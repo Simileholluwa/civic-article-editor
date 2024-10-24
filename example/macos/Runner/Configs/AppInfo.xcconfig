@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = app
+PRODUCT_NAME = Civic Article Editor
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.app
+PRODUCT_BUNDLE_IDENTIFIER = civic_article_editor
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = The product copyright of the macos app

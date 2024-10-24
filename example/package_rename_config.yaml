@@ -1,0 +1,30 @@
+package_rename_config:
+  android:
+    app_name: Civic Article Editor
+    package_name: civic_article_editor
+    override_old_package: civic-article-editor
+
+  ios:
+    app_name: Civic Article Editor
+    bundle_name: Civic Article Editor
+    package_name: civic_article_editor
+
+  linux:
+    app_name: Civic Article Editor
+    package_name: civic_article_editor
+    exe_name: civic_article_editor
+
+  macos:
+    app_name: Civic Article Editor
+    package_name: civic_article_editor
+    copyright_notice: The product copyright of the macos app
+
+  web:
+    app_name: Civic Article Editor
+    description: An article editor for Civic
+
+  windows:
+    app_name: Civic Article Editor
+    organization: The Future Thinkers
+    copyright_notice: The legal copyright of the windows app
+    exe_name: civic_article_editor

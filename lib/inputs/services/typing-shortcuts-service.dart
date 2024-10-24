@@ -23,15 +23,26 @@ class TypingShortcutsService {
   // Returns the pressed or released key.
   KeyEventResult getKeyEventResult(
     FocusNode node,
-    RawKeyEvent event,
+    KeyEvent event,
   ) {
     // Don't handle key if there is a meta key pressed.
-    if (event.isAltPressed || event.isControlPressed || event.isMetaPressed) {
+    const isAltLeft = PhysicalKeyboardKey.altLeft;
+    const isAltRight = PhysicalKeyboardKey.altRight;
+    const isControlLeft = PhysicalKeyboardKey.controlLeft;
+    const isControlRight = PhysicalKeyboardKey.controlRight;
+    const isMetaLeft = PhysicalKeyboardKey.metaLeft;
+    const isMetaRight = PhysicalKeyboardKey.metaRight;
+    if (event.physicalKey == isAltLeft ||
+        event.physicalKey == isAltRight ||
+        event.physicalKey == isControlLeft ||
+        event.physicalKey == isControlRight ||
+        event.physicalKey == isMetaLeft ||
+        event.physicalKey == isMetaRight) {
       return KeyEventResult.ignored;
     }
 
     // When the key is released, do nothing.
-    if (event is! RawKeyDownEvent) {
+    if (event is! KeyDownEvent) {
       return KeyEventResult.ignored;
     }
 
@@ -57,7 +68,7 @@ class TypingShortcutsService {
 
   // === PRIVATE ==
 
-  KeyEventResult _handleSpaceKey(RawKeyEvent event) {
+  KeyEventResult _handleSpaceKey(KeyEvent event) {
     final child = state.refs.documentController.queryChild(
       _selectionService.selection.baseOffset,
     );
@@ -95,21 +106,21 @@ class TypingShortcutsService {
     return KeyEventResult.handled;
   }
 
-  KeyEventResult _handleTabKey(RawKeyEvent event) {
+  KeyEventResult _handleTabKey(KeyEvent event) {
     final child = state.refs.documentController.queryChild(
       _selectionService.selection.baseOffset,
     );
     final node = child.node!;
     final nodeParent = node.parent;
+    final isShiftPressed = event.physicalKey == PhysicalKeyboardKey.shiftLeft ||
+        event.physicalKey == PhysicalKeyboardKey.shiftRight;
 
     if (child.node == null) {
       return _insertTabCharacter();
     }
 
     if (nodeParent == null || nodeParent is! BlockM) {
-      return event.isShiftPressed
-          ? _removeTabCharacter()
-          : _insertTabCharacter();
+      return isShiftPressed ? _removeTabCharacter() : _insertTabCharacter();
     }
 
     // Ordered lists, unordered lists, checked type line.
@@ -118,14 +129,12 @@ class TypingShortcutsService {
             nodeParent.style.containsKey(AttributesAliasesM.bulletList.key) ||
             nodeParent.style.containsKey(AttributesAliasesM.checked.key);
     if (canBeIndented) {
-      state.refs.controller.indentSelection(!event.isShiftPressed);
+      state.refs.controller.indentSelection(!isShiftPressed);
       return KeyEventResult.handled;
     }
 
     if (node is! LineM || (node.isNotEmpty && node.first is! String)) {
-      return event.isShiftPressed
-          ? _removeTabCharacter()
-          : _insertTabCharacter();
+      return isShiftPressed ? _removeTabCharacter() : _insertTabCharacter();
     }
 
     if (node.isNotEmpty && (node.first as String).isNotEmpty) {

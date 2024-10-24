@@ -117,8 +117,7 @@ class _TextLineState extends State<TextLine> {
         text: textSpan,
         textAlign: textAlign,
         textDirection: widget.textDirection,
-        strutStyle: strutStyle,
-        textScaleFactor: textScale,
+        strutStyle: strutStyle, textScaler: TextScaler.linear(textScale),
       ),
     );
   }

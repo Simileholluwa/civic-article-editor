@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "app")
-set(APPLICATION_ID "com.example.app")
+set(BINARY_NAME "civic_article_editor")
+set(APPLICATION_ID "civic_article_editor")
 
 cmake_policy(SET CMP0063 NEW)
 

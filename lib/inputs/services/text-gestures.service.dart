@@ -385,7 +385,7 @@ class TextGesturesService {
   }
 
   bool _isShiftClick(PointerDeviceKind deviceKind) {
-    final pressed = RawKeyboard.instance.keysPressed;
+    final pressed = HardwareKeyboard.instance.physicalKeysPressed;
     final shiftPressed = pressed.contains(LogicalKeyboardKey.shiftLeft) ||
         pressed.contains(LogicalKeyboardKey.shiftRight);
 

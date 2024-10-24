@@ -28,6 +28,7 @@ dependencies:
   # gallery_saver: 2.3.2 // TODO Restore, disabled for now because we really need http ^1.0.0 for google fonts latest
   device_info_plus: 9.1.0
   google_fonts:  6.1.0 # because of gallery_saver // No longer stuck on 4.0.4, currently gallery saver is disabled.
+  package_rename: ^1.7.1
 
 dev_dependencies:
   flutter_test:

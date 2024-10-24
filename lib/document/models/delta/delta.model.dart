@@ -44,7 +44,7 @@ class DeltaM {
   int get hashCode => hashObjects(operations);
 
   @override
-  bool operator ==(dynamic newDelta) => _du.equals(operations, newDelta);
+  bool operator ==(Object newDelta) => _du.equals(operations, newDelta);
 
   int get modificationCount => _modificationCount;
 

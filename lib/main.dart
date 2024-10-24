@@ -442,13 +442,13 @@ class VisualEditorState extends State<VisualEditor>
         child: child,
       );
 
-  // Intercept RawKeyEvent on Web to prevent it from propagating to parents that might
+  // Intercept KeyEvent on Web to prevent it from propagating to parents that might
   // interfere with the editor key behavior, such as SingleChildScrollView.
   // SingleChildScrollView reacts to keys.
   Widget _conditionalPreventKeyPropagationToParentIfWeb({required Widget child}) => kIsWeb
-      ? RawKeyboardListener(
+      ? KeyboardListener(
           focusNode: FocusNode(
-            onKey: _typingShortcutsService.getKeyEventResult,
+            onKeyEvent: _typingShortcutsService.getKeyEventResult,
           ),
           child: child,
         )
